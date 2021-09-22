@@ -1,65 +1,61 @@
 <h4 class="text-center">Register</h4>
 
-<form #registerForm='ngForm' class="form mt-4">
+<form
+  [formGroup]="newUserForm"
+  class="form mt-4"
+  (submit)="register()">
   <div class="form-group">
     <input
-      #emailInput='ngModel'
-      [(ngModel)]="email"
+      formControlName="email"
       name="email"
       type="email"
       class="form-control"
-      placeholder="email"
-      required>
+      placeholder="email">
     <app-message
-      *ngIf="emailInput.touched && emailInput.invalid"
+      *ngIf="newUserForm.get('email')?.errors?.required && newUserForm.get('email')?.touched"
       message="email is required!">
+    </app-message>
+    <app-message
+      *ngIf="newUserForm.get('email')?.errors?.email"
+      message="format invalid!">
     </app-message>
   </div>
   <div class="form-group">
     <input
-      #fullnameInput='ngModel'
-      [(ngModel)]="fullName"
-      name="fullname"
+      formControlName="fullName"
       type="text"
       class="form-control"
-      placeholder="fullname"
-      required>
+      placeholder="fullname">
     <app-message
-      *ngIf="fullnameInput.touched && fullnameInput.invalid"
+      *ngIf="newUserForm.get('fullName')?.errors?.required && newUserForm.get('fullName')?.touched"
       message="fullname is required!">
     </app-message>
   </div>
   <div class="form-group">
     <input
-      #usernameInput='ngModel'
-      [(ngModel)]="userName"
-      name="username"
+      formControlName="userName"
       type="text"
       class="form-control"
-      placeholder="username"
-      required>
+      placeholder="username">
     <app-message
-      *ngIf="usernameInput.touched && usernameInput.invalid"
+      *ngIf="newUserForm.get('userName')?.errors?.required && newUserForm.get('userName')?.touched"
       message="username is required!">
     </app-message>
   </div>
   <div class="form-group">
     <input
-      #passwordInput='ngModel'
-      [(ngModel)]="password"
-      name="password"
+      formControlName="password"
       type="password"
       class="form-control"
-      placeholder="password"
-      required>
+      placeholder="password">
     <app-message
-      *ngIf="passwordInput.touched && passwordInput.invalid"
+      *ngIf="newUserForm.get('password')?.errors?.required && newUserForm.get('password')?.touched"
       message="password is required!">
     </app-message>
   </div>
 
   <button
-    [disabled]="registerForm.invalid || registerForm.pending"
+    [disabled]="newUserForm.invalid || newUserForm.pending"
     type="submit"
     class="btn btn-primary btn-block">
     Login
