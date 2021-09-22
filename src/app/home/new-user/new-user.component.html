@@ -1,0 +1,69 @@
+<h4 class="text-center">Register</h4>
+
+<form #registerForm='ngForm' class="form mt-4">
+  <div class="form-group">
+    <input
+      #emailInput='ngModel'
+      [(ngModel)]="email"
+      name="email"
+      type="email"
+      class="form-control"
+      placeholder="email"
+      required>
+    <app-message
+      *ngIf="emailInput.touched && emailInput.invalid"
+      message="email is required!">
+    </app-message>
+  </div>
+  <div class="form-group">
+    <input
+      #fullnameInput='ngModel'
+      [(ngModel)]="fullName"
+      name="fullname"
+      type="text"
+      class="form-control"
+      placeholder="fullname"
+      required>
+    <app-message
+      *ngIf="fullnameInput.touched && fullnameInput.invalid"
+      message="fullname is required!">
+    </app-message>
+  </div>
+  <div class="form-group">
+    <input
+      #usernameInput='ngModel'
+      [(ngModel)]="userName"
+      name="username"
+      type="text"
+      class="form-control"
+      placeholder="username"
+      required>
+    <app-message
+      *ngIf="usernameInput.touched && usernameInput.invalid"
+      message="username is required!">
+    </app-message>
+  </div>
+  <div class="form-group">
+    <input
+      #passwordInput='ngModel'
+      [(ngModel)]="password"
+      name="password"
+      type="password"
+      class="form-control"
+      placeholder="password"
+      required>
+    <app-message
+      *ngIf="passwordInput.touched && passwordInput.invalid"
+      message="password is required!">
+    </app-message>
+  </div>
+
+  <button
+    [disabled]="registerForm.invalid || registerForm.pending"
+    type="submit"
+    class="btn btn-primary btn-block">
+    Login
+  </button>
+</form>
+<p>Already a user? <a [routerLink]="['']">Sign in!</a></p>
+
