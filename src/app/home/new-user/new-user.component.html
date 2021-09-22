@@ -41,6 +41,10 @@
       *ngIf="newUserForm.get('userName')?.errors?.required && newUserForm.get('userName')?.touched"
       message="username is required!">
     </app-message>
+    <app-message
+      *ngIf="newUserForm.get('userName')?.errors?.lowercase && newUserForm.get('userName')?.touched"
+      message="username must be lowercase!">
+    </app-message>
   </div>
   <div class="form-group">
     <input
