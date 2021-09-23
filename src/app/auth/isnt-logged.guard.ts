@@ -6,7 +6,7 @@ import { UserService } from './user/user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanLoad {
+export class IsntLoggedGuard implements CanLoad {
 
   constructor(
     private userService: UserService,
@@ -18,11 +18,11 @@ export class AuthGuard implements CanLoad {
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if(!this.userService.isLogged()) {
-      this.router.navigate([''])
-      return false;
-    }
+      if(!this.userService.isLogged()) {
+        this.router.navigate([''])
+        return false;
+      }
 
-    return true;
+      return true;
   }
 }

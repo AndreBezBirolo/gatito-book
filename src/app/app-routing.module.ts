@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IsntLoggedGuard } from './auth/isnt-logged.guard';
+import { IsLoggedGuard } from './auth/is-logged.guard';
 
 const routes: Routes = [
   {
@@ -10,12 +12,18 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module')
-      .then((m) => m.HomeModule)
+      .then((m) => m.HomeModule),
+    canLoad: [
+      IsLoggedGuard
+    ]
   },
   {
     path: 'animals',
     loadChildren: () => import('./animals/animals.module')
-      .then((m) => m.AnimalsModule)
+      .then((m) => m.AnimalsModule),
+    canLoad: [
+      IsntLoggedGuard
+    ]
   }
 ];
 
