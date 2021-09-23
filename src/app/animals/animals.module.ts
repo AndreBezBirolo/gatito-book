@@ -7,6 +7,7 @@ import { PhotoComponent } from './photo/photo.component';
 import { CardModule } from '../components/card/card.module';
 import { GridPhotosComponent } from './grid-photos/grid-photos.component';
 import { DetailsComponent } from './details/details.component';
+import { CommentsComponent } from './details/comments/comments.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { DetailsComponent } from './details/details.component';
     AnimalsListComponent,
     PhotoComponent,
     GridPhotosComponent,
-    DetailsComponent
+    DetailsComponent,
+    CommentsComponent
   ],
   imports: [
     CommonModule,
