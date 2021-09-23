@@ -14,7 +14,6 @@ export class AnimalsService {
 
   constructor(
     private http: HttpClient,
-    private tokenService: TokenService
   ) { }
 
   listImagesByUser(userName: string): Observable<Animals> {
