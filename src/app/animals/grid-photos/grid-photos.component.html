@@ -1,0 +1,30 @@
+<p
+  class="text-center text-muted"
+  *ngIf="!animals.length">
+  Sorry, no animals.
+</p>
+
+<div class="row">
+  <div
+    class="col-4"
+    *ngFor="let animal of animals">
+    <a [routerLink]="['/animals', animal.id]">
+      <app-card>
+        <app-photo
+          [image_url]="animal.url"
+          [alternative_text]="animal.description">
+        </app-photo>
+        <i
+          aria-hidden="true"
+          class="fa fa-heart-o fa-1x mr-2">
+          {{ animal.likes }}
+        </i>
+        <i
+          aria-hidden="true"
+          class="fa fa-comment-o fa-1x mr-2 ml-2">
+          {{ animal.comments }}
+        </i>
+      </app-card>
+    </a>
+  </div>
+</div>
