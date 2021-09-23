@@ -16,7 +16,15 @@
           <i class="fa fa-comment-o fa-2x mr-2 ml-2">{{animal.comments}}</i>
           <i (click)="delete()" class="fa fa-trash-o fa-2x pull-right"></i>
         </p>
+        <app-comments
+          [id]="animal.id"
+          *ngIf="animal.allowComments; else noComments">
+        </app-comments>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #noComments>
+  <p class="text-danger">Comments are not allowed here.</p>
+</ng-template>

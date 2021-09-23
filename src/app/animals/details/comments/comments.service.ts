@@ -15,7 +15,7 @@ export class CommentsService {
     private http: HttpClient
   ) { }
 
-  getComments(id: number): Observable<Comments> {
+  getComment(id: number): Observable<Comments> {
     return this.http
       .get<Comments>(`${API}/photos/${id}/comments`);
   }
