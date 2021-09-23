@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewUserService } from './new-user.service';
 import { NewUser } from './new-user';
-import { lowercaseValidator } from './lowercase.validator';
 import { UserExistService } from './user-exist.service';
+import { lowercaseValidator } from './validators/lowercase.validator';
+import { userPassEqualsValidator } from './validators/user-pass-equals.validator';
 
 @Component({
   selector: 'app-new-user',
@@ -54,7 +55,12 @@ export class NewUserComponent implements OnInit {
           Validators.required
         ]
       ],
-    });
+    },
+      {
+        validators: [
+          userPassEqualsValidator
+        ]
+      });
   }
 
   register() {

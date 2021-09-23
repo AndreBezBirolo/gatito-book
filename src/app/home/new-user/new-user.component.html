@@ -60,6 +60,11 @@
       *ngIf="newUserForm.get('password')?.errors?.required && newUserForm.get('password')?.touched"
       message="password is required!">
     </app-message>
+    <app-message
+      *ngIf="newUserForm.errors?.userPassEqual"
+      message="password must be different from username!"
+    >
+    </app-message>
   </div>
 
   <button
