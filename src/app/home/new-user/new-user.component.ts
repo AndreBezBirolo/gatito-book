@@ -5,6 +5,7 @@ import { NewUser } from './new-user';
 import { UserExistService } from './user-exist.service';
 import { lowercaseValidator } from './validators/lowercase.validator';
 import { userPassEqualsValidator } from './validators/user-pass-equals.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-user',
@@ -23,39 +24,40 @@ export class NewUserComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private newUserService: NewUserService,
-    private userExistService: UserExistService
+    private userExistService: UserExistService,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
     this.newUserForm = this.formBuilder.group({
-      email: ['',
-        [
-          Validators.required,
-          Validators.email
-        ]
-      ],
-      fullName: ['',
-        [
-          Validators.required,
-          Validators.minLength(4)
-        ]
-      ],
-      userName: ['',
-        [
-          Validators.required,
-          lowercaseValidator
+        email: ['',
+          [
+            Validators.required,
+            Validators.email
+          ]
         ],
-        [
-          this.userExistService.userExist()
-        ]
-      ],
-      password: ['',
-        [
-          Validators.required
-        ]
-      ],
-    },
+        fullName: ['',
+          [
+            Validators.required,
+            Validators.minLength(4)
+          ]
+        ],
+        userName: ['',
+          [
+            Validators.required,
+            lowercaseValidator
+          ],
+          [
+            this.userExistService.userExist()
+          ]
+        ],
+        password: ['',
+          [
+            Validators.required
+          ]
+        ],
+      },
       {
         validators: [
           userPassEqualsValidator
@@ -64,7 +66,13 @@ export class NewUserComponent implements OnInit {
   }
 
   register() {
-    const newUser = this.newUserForm.getRawValue() as NewUser;
-    console.log(newUser)
+    if (this.newUserForm.valid) {
+      const newUser = this.newUserForm.getRawValue() as NewUser;
+      this.newUserService.registerNewUser(newUser)
+        .subscribe(
+          () => this.router.navigate(['']),
+          (err) => console.log(err)
+        )
+    }
   }
 }
