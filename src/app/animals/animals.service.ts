@@ -17,25 +17,13 @@ export class AnimalsService {
     private tokenService: TokenService
   ) { }
 
- private setHeader() {
-   const token = this.tokenService.getToken();
-   return new HttpHeaders()
-     .append('x-acces-token', token)
-  }
-
   listImagesByUser(userName: string): Observable<Animals> {
-    const headers = this.setHeader()
     return this.http
-      .get<Animals>(`${API}/${userName}/photos`, {
-        headers
-      })
+      .get<Animals>(`${API}/${userName}/photos`)
   }
 
   getById(id: number): Observable<Animal> {
-    const headers = this.setHeader()
     return this.http
-      .get<Animal>(`${API}/photos/${id}`, {
-        headers
-      })
+      .get<Animal>(`${API}/photos/${id}`)
   }
 }
