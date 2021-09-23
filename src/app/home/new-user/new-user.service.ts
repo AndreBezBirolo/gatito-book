@@ -18,4 +18,9 @@ export class NewUserService {
     return this.http
       .post(API_URL + '/user/signup', user);
   }
+
+  checkUsername(userName: string) {
+    return this.http
+      .get(`${API_URL}/user/exists/${userName}`)
+  }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewUserService } from './new-user.service';
 import { NewUser } from './new-user';
 import { lowercaseValidator } from './lowercase.validator';
+import { UserExistService } from './user-exist.service';
 
 @Component({
   selector: 'app-new-user',
@@ -20,7 +21,8 @@ export class NewUserComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private newUserService: NewUserService
+    private newUserService: NewUserService,
+    private userExistService: UserExistService
   ) {
   }
 
@@ -42,6 +44,9 @@ export class NewUserComponent implements OnInit {
         [
           Validators.required,
           lowercaseValidator
+        ],
+        [
+          this.userExistService.userExist()
         ]
       ],
       password: ['',
