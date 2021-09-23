@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Animals } from './animal';
+import { Animal, Animals } from './animal';
 import { TokenService } from '../auth/token.service';
 
 const API = environment.API_URL
@@ -17,12 +17,24 @@ export class AnimalsService {
     private tokenService: TokenService
   ) { }
 
+ private setHeader() {
+   const token = this.tokenService.getToken();
+   return new HttpHeaders()
+     .append('x-acces-token', token)
+  }
+
   listImagesByUser(userName: string): Observable<Animals> {
-    const token = this.tokenService.getToken();
-    const headers = new HttpHeaders()
-      .append('x-acces-token', token)
+    const headers = this.setHeader()
     return this.http
       .get<Animals>(`${API}/${userName}/photos`, {
+        headers
+      })
+  }
+
+  getById(id: number): Observable<Animal> {
+    const headers = this.setHeader()
+    return this.http
+      .get<Animal>(`${API}/photos/${id}`, {
         headers
       })
   }

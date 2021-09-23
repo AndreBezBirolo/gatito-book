@@ -1,0 +1,17 @@
+<div
+  class="bg-white border"
+  *ngIf="animal$ | async as animal">
+  <div class="row">
+    <div class="col-lg-8">
+      <app-photo
+        [image_url]="animal.url"
+        [alternative_text]="animal.description">
+      </app-photo>
+    </div>
+    <div class="col-lg-4">
+      <p>
+        <small class="text-left break-word">{{animal.description}}</small>
+      </p>
+    </div>
+  </div>
+</div>
