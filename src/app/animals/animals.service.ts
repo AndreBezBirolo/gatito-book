@@ -15,7 +15,8 @@ export class AnimalsService {
 
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {
+  }
 
   listImagesByUser(userName: string): Observable<Animals> {
     return this.http
@@ -35,7 +36,7 @@ export class AnimalsService {
   likePhoto(id: number): Observable<boolean> {
     return this.http
       .post(`${API}/photos/${id}/like`,
-        {}, { observe: 'response'})
+        {}, {observe: 'response'})
       .pipe(
         mapTo(true),
         catchError(
@@ -44,5 +45,18 @@ export class AnimalsService {
             : throwError(err)
         )
       )
+  }
+
+  uploadPhoto(description: string, allowComments: boolean, file: File) {
+    const formData = new FormData();
+    formData.append('description', description);
+    formData.append('allowComments', allowComments ? 'true' : 'false');
+    formData.append('imageFile', file);
+
+    return this.http
+      .post(`${API}/photos/upload`, formData, {
+        observe: 'events',
+        reportProgress: true,
+      })
   }
 }

@@ -9,6 +9,8 @@ import { GridPhotosComponent } from './grid-photos/grid-photos.component';
 import { DetailsComponent } from './details/details.component';
 import { CommentsComponent } from './details/comments/comments.component';
 import { SharedModule } from '../shared/shared.module';
+import { NewAnimalComponent } from './new-animal/new-animal.component';
+import { NewPhotoComponent } from './new-photo/new-photo.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { SharedModule } from '../shared/shared.module';
     PhotoComponent,
     GridPhotosComponent,
     DetailsComponent,
-    CommentsComponent
+    CommentsComponent,
+    NewAnimalComponent,
+    NewPhotoComponent
   ],
   imports: [
     CommonModule,
