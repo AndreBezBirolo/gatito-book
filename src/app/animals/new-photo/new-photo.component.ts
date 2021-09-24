@@ -53,7 +53,7 @@ export class NewPhotoComponent implements OnInit {
     const [file] = fileInput?.files;
     this.file = file;
     const reader = new FileReader();
-    reader.onload = (event: any) => this.preview = event.target.results
+    reader.onload = (event: any) => (this.preview = event.target.result)
     reader.readAsDataURL(file);
   }
 
