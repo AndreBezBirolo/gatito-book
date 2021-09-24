@@ -9,7 +9,6 @@ import { GridPhotosComponent } from './grid-photos/grid-photos.component';
 import { DetailsComponent } from './details/details.component';
 import { CommentsComponent } from './details/comments/comments.component';
 import { SharedModule } from '../shared/shared.module';
-import { NewAnimalComponent } from './new-animal/new-animal.component';
 import { NewPhotoComponent } from './new-photo/new-photo.component';
 
 
@@ -20,7 +19,6 @@ import { NewPhotoComponent } from './new-photo/new-photo.component';
     GridPhotosComponent,
     DetailsComponent,
     CommentsComponent,
-    NewAnimalComponent,
     NewPhotoComponent
   ],
   imports: [
