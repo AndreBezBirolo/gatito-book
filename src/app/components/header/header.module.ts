@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import { AppRoutingModule } from '../../app-routing.module';
 import { RouterModule } from '@angular/router';
+import { MenuModule } from '../menu/menu.module';
 
 
 
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    MenuModule
   ],
   exports: [
     HeaderComponent
